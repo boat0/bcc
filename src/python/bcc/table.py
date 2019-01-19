@@ -317,6 +317,8 @@ class TableBase(MutableMapping):
             tmp = {}
             f1 = self.Key._fields_[0][0]
             f2 = self.Key._fields_[1][0]
+            if f2 == '__pad_1' and len(self.Key._fields_) == 3:
+                f2 = self.Key._fields_[2][0]
             for k, v in self.items():
                 bucket = getattr(k, f1)
                 if bucket_fn:
